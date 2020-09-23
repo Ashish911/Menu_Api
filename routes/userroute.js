@@ -51,4 +51,37 @@ router.post('/signup', (req,res, next) => {
         })
 })
 
+// User Login
+router.post('/', (req, res, next) => {
+    User.findOne({ Email: req.body.Email })
+        .then((user) => {
+            if (user == null) {
+                let err = new Error('User not found!');
+                err.status = 401;
+                return next(err);
+            } else {
+                bcrypt.compare(req.body.Password, user.Password)
+                    .then((isMatch) => {
+                        if (!isMatch) {
+                            let err = new Error('Password does not match!');
+                            err.status = 401;
+                            return next(err);
+                        }
+                        let token = jwt.sign({ _id: user._id }, jwtSecret);
+                        let id = user._id;
+                        res.json({ id, status: 'Login success!', token: token });
+                    }).catch(next);
+            }
+        }).catch(next);
+})
+
+// User delete with the help of id
+router.delete('/:id', function(req, res){
+    User.findByIdAndDelete(req.params.id).then(function(){
+        res.send("deleted")
+    }).catch(function(){
+        res.send(e)
+    })
+})
+
 module.exports = router;
