@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema({
   isChief: {
     type: Boolean,
     required: true,
-  },
+  }
 });
 
 const User = mongoose.model('User', UserSchema);
