@@ -4,6 +4,7 @@ require('./db/mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+const UserRouter = require('./routes/userroute');
 const CategoryRouter = require('./routes/categoryroute');
 const FoodRouter = require('./routes/foodroute');
 const TableRouter = require('./routes/tableroute');
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/user', UserRouter);
 app.use('/category', CategoryRouter);
 app.use('/food', FoodRouter);
 app.use('/table', TableRouter);
