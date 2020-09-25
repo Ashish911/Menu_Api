@@ -84,4 +84,18 @@ router.delete('/:id', function(req, res){
     })
 })
 
+router.get('/me', auth.verifyUser, (req, res, next) => {
+    res.json({ _id: req.user._id, FullName: req.user.FullName,
+        UserName: req.user.UserName, Email: req.user.Email, PhoneNo: req.user.PhoneNo,
+        isWaiter: req.user.isWaiter, isChief: req.user.isChief});
+});
+
+router.put('/me', auth.verifyUser, (req, res, next) => {
+    User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
+        .then((user) => {
+            res.json({ _id: user._id, FullName: req.user.FullName,
+                UserName: req.user.UserName, Email: user.Email, PhoneNo: user.PhoneNo });
+        }).catch(next);
+});
+
 module.exports = router;
