@@ -30,6 +30,7 @@ const FoodSchema = new mongoose.Schema({
   },
   CategoryId: {
     type: String,
+    required:true
   },
 });
 

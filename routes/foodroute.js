@@ -46,7 +46,7 @@ router.post('/', upload.single('FoodImage'), (req, res) => {
     Tags2: req.body.Tags2,
     Description: req.body.Description,
     Price: req.body.Price,
-    Categoryid: req.body.Categoryid,
+    CategoryId: req.body.CategoryId,
   });
   newFood.save().then((foodDoc) => {
     res.send(foodDoc);
@@ -72,7 +72,7 @@ router.get('/getByCategory/:id', async (req, res) => {
   try {
     console.log('here');
     const id = req.params.id;
-    const data = await Category.find({ Categoryid: id });
+    const data = await Food.find({ CategoryId: id });
     res.json(data);
   } catch (err) {
     res.status(404).send(err);
