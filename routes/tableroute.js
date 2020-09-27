@@ -5,8 +5,7 @@ const router = express.Router();
 //post table
 router.post('/', (req, res) => {
   let newTable = new Table({
-    TableName: req.body.TableName,
-    TableCode: req.body.TableCode
+    TableName: req.body.TableName
   });
   newTable.save().then((TableDoc) => {
     res.send(TableDoc);
