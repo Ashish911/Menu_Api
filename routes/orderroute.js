@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
         Price: req.body.Price,
         Quantity: req.body.Quantity,
         FullName: req.body.FullName,
-        TableNo: req.body.TableNo,
+        TableName: req.body.TableName,
         isConfirmed: req.body.isConfirmed,
         isCompleted: req.body.isCompleted
     })

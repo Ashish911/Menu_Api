@@ -20,7 +20,7 @@ const OrderSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    TableNo: {
+    TableName: {
         type:String,
         required:true
     },
