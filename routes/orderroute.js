@@ -35,4 +35,28 @@ router.delete('/:id', function(req,res){
     })
 })
 
+router.patch('/:id',(req, res) => {
+    Order.findOne({
+        _id: req.params.id
+    }).then((Order) => {
+        if (Order) {
+            return true;
+        }
+        return false;
+    }).then((canUploadImage) => {
+        if (canUploadImage) {
+            Order.findOneAndUpdate({
+                    _id: req.params.id
+                }, {
+                    $set: req.body
+                }
+            ).then(() => {
+                res.send({ message: 'Order updated successfully' })
+            })
+        } else {
+            res.sendStatus(404);
+        }
+    })
+});
+
 module.exports = router;
