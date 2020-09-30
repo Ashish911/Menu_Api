@@ -8,7 +8,6 @@ const UserRouter = require('./routes/userroute');
 const CategoryRouter = require('./routes/categoryroute');
 const FoodRouter = require('./routes/foodroute');
 const OrderRouter = require('./routes/orderroute');
-const TableRouter = require('./routes/tableroute');
 
 app.use(morgan('dev'));
 
@@ -32,7 +31,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/user', UserRouter);
 app.use('/category', CategoryRouter);
 app.use('/food', FoodRouter);
-app.use('/table', TableRouter);
 app.use('/order', OrderRouter);
 app.use('/upload', express.static(__dirname + '/upload/Images'));
 
